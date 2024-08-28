@@ -12,10 +12,12 @@ updates:
     groups:
       go-security-dependencies:
         applies-to: security-updates
+        patterns:
+          - "*"  
       go-update-dependencies:
         applies-to: version-updates
-        # patterns:
-        #   - "*"
+        patterns:
+          - "*"  
     labels:
       - "approved"
       - "lgtm"
