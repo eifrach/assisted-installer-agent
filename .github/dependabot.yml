@@ -10,7 +10,10 @@ updates:
     schedule:
       interval: "daily"
     groups:
-      go-dependencies:
+      go-security-dependencies:
+        applies-to: security-updates
+      go-update-dependencies:
+        applies-to: version-updates
         # patterns:
         #   - "*"
     labels:
