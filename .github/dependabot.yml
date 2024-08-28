@@ -4,8 +4,8 @@
 # https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 version: 2
 updates:
-  - package-ecosystem: bundler
-    vendor: true
+  - package-ecosystem: gomod
+    # vendor: true
     directory: "/"
     schedule:
       interval: "daily"
