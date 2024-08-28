@@ -2,13 +2,17 @@
 # package ecosystems to update and where the package manifests are located.
 # Please see the documentation for all configuration options:
 # https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
-
 version: 2
 updates:
-  - package-ecosystem: "gomod"
+  - package-ecosystem: bundler
+    vendor: true
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
+    groups:
+      go-dependencies:
+        patterns:
+          - "*"
     labels:
       - "approved"
       - "lgtm"
@@ -16,8 +20,3 @@ updates:
       - "dependabot"
     commit-message:
       prefix: "NO-ISSUE"
-    groups:
-      go-dependencies:
-        patterns:
-          - "*"
-
