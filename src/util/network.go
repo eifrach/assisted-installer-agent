@@ -42,19 +42,22 @@ func SetV6PrefixesForAddress(link string, finder RouteFinder, log logrus.FieldLo
 	if len(addresses) == 0 {
 		return nil
 	}
+	log.Debugf("Eran Addresses %v", addresses)
 
 	l, err := finder.LinkByName(link)
+	log.Debugf("Eran linkby name %v", l)
 	if err != nil {
 		return err
 	}
 
 	routes, err := getUsableIPv6Routes(l, finder, log)
+	log.Debugf("Eran routes  %v", routes)
+
 	if err != nil {
 		return err
 	}
 
 	for i, addr := range addresses {
-
 		if addr == "" || !strings.Contains(addr, ":") {
 			continue
 		}
@@ -66,7 +69,10 @@ func SetV6PrefixesForAddress(link string, finder RouteFinder, log logrus.FieldLo
 		}
 
 		for _, route := range routes {
+			log.Debugf("Eran routes  %v", routes)
 			containmentNet := net.IPNet{IP: route.Dst.IP, Mask: route.Dst.Mask}
+			log.Debugf("Eran containmentNet  %v", containmentNet)
+			log.Debugf("Eran ip  %v", ip)
 			if containmentNet.Contains(ip) {
 				addresses[i] = (&net.IPNet{IP: ip, Mask: route.Dst.Mask}).String()
 				break
